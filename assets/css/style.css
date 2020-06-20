@@ -38,7 +38,7 @@ body {
 }
 
 .column {
-    background: #f0efef;
+    background: #f1f1f1;
     padding: 10px 15px;
 }
 
@@ -63,12 +63,25 @@ body {
 }
 
 .column-header {
+    display: flex;
+    justify-content: space-between;
     text-align: left;
     font-size: 14px;
     font-weight: 700;
     color: rgb(82, 106, 122);
     margin: 0;
     margin-bottom: 10px;
+}
+
+.column-footer .trash-button{
+    border: none;
+    cursor: pointer;
+    color: rgba(199, 15, 30, 0.863);
+}
+
+.column-footer{
+    display: flex;
+    justify-content: space-between;
 }
 
 .column-footer span {

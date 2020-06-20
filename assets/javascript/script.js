@@ -1,76 +1,25 @@
+Application.load();
 
- // Add listen function AddNote for all existing columns
- document.querySelectorAll(".column").forEach(Note.add);
+ document.querySelectorAll(".column").forEach(Column.noteHandling);
 
- //Add listen function NoteEdit for editing notes
+ document.querySelectorAll(".column").forEach(Column.deleteColumn);
+
  document.querySelectorAll(".note").forEach(Note.edit);
 
-
  
-//Handling Drag and Drop
-function dragstart_noteHandler (event){
+// Create new column - listening event
+const spanAction_addColumn = document.querySelector("[data-action-addColumn]");
 
-   Note.draggable = this;
-  // this.classList.add("dragged");
-}
+   spanAction_addColumn.addEventListener("click", function(event){
 
-function dragend_noteHandler (event){
+      const columnElement = Column.createColumn();
+      document.querySelector(".columns").append(columnElement);   
 
-   // this.classList.remove("dragged");
-   Note.draggable = null;
+      Column.noteHandling(columnElement);
 
-   document.querySelectorAll(".note").forEach(n => n.classList.remove("under"));
-}
-
-function dragenter_noteHandler (event){
-
-      if(this === Note.draggable){
-      return;
-     }
-}
-
-function dragover_noteHandler (event){
-
-      if(this === Note.draggable){
-      return;
-     }
-     this.classList.add("under");
-     event.preventDefault();
-}
-
-function dragleave_noteHandler (event){
-
-      if(this === Note.draggable){
-      return;
-     }
-     this.classList.remove("under");
-}
-
-function drop_noteHandler (event){
-   //  event.stopPropogation();
-
-      if(this === Note.draggable){
-         return;
-     }
-
-   if(this.parentElement === Note.draggable.parentElement){
-
-      const noteList = Array.from(this.parentElement.querySelectorAll(".note"));
-      const currentNoteIndex = noteList.indexOf(this);
-      const draggableIndex = noteList.indexOf(Note.draggable);
-
-      if(currentNoteIndex < draggableIndex){
-         this.parentElement.insertBefore(Note.draggable, this);
-      }
-      else{
-         this.parentElement.insertBefore(Note.draggable, this.nextElementSibling);
-      }
-   }
-
-   else{
-      this.parentElement.insertBefore(Note.draggable, this);
-   }
-}
+      Application.save();
+}); 
+ 
 
 
  
