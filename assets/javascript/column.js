@@ -1,6 +1,6 @@
 const Column = {
 
-    idCounter: 4,
+    idCounter: 2,
     draggable: null,
 
          createColumn(id = null){
@@ -41,6 +41,7 @@ const Column = {
                   if (checkAction){
                         columnElement.closest(".column").remove();
                   }
+
                   Application.save();
              });
          },
@@ -51,6 +52,7 @@ const Column = {
             addNote_spanAction.addEventListener("click", function(event){
                   const noteElement = Note.add();
                   columnElement.querySelector("[data-notes]").append(noteElement);
+                  Application.save();
                         
                   noteElement.setAttribute("contenteditable", "true");
                   noteElement.focus();

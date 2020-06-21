@@ -1,5 +1,5 @@
 const Note = {
-    idCounter: 8,
+    idCounter: 4,
     draggable: null,
 
      //Create new note
@@ -17,7 +17,6 @@ const Note = {
             newNote.setAttribute("data-note-id", Note.idCounter++);
          }
          Note.edit(newNote);
-         Application.save();
 
          //    columnElement.addEventListener("dragover", function(event){
          //       event.preventDefault();
@@ -49,8 +48,9 @@ const Note = {
                if(!noteElement.textContent.trim().length){
                   noteElement.remove();
                }
+
+               Application.save();
          });
-         Application.save();
    
          noteElement.addEventListener("dragstart", Note.dragstart)
          noteElement.addEventListener("dragend", Note.dragend)

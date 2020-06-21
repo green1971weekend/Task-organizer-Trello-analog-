@@ -57,11 +57,12 @@ const Application = {
 
             mountPoint.append(columnElement);
 
-            for(const noteId of column.noteIds){
+            for(let noteId of column.noteIds){
                 const note = getNoteById(noteId);
                 const noteElement = Note.add(note.id, note.content);
 
                 columnElement.querySelector("[data-notes]").append(noteElement);
+                Note.idCounter = ++noteId;
             }
         }
     }
